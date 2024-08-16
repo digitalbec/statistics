@@ -1,5 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Aug 16 10:13:21 2024
+
+@author: bec
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
+
+# all four datasets are described by the same linear model - until the residuals are examined
+# N = 11
+# mean of X = 9.0
+# mean of Y = 7.5
+# equation of regression line = Y = 3+0.5X
+# standard error of estimate of slope = 0.118
+# t = 4.24
+# sum of squares = X-X = 110.0
+# regression sum of squares = 27.50
+# residual sum of squares of Y = 13.75
+# correlation coefficient = 0.82
+# r2= .67
 
 x = [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5]
 y1 = [8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68]
@@ -37,4 +58,31 @@ for ax, (label, (x, y)) in zip(axs.flat, datasets.items()):
     ax.text(0.95, 0.07, stats, fontsize=9, bbox=bbox,
             transform=ax.transAxes, horizontalalignment='right')
 
+plt.show()
+
+# Create a single plot
+plt.figure(figsize=(6, 6))
+
+# Set the same axis for all plots
+plt.xlim(0, 20)
+plt.ylim(2, 14)
+plt.xticks([0, 10, 20])
+plt.yticks([4, 8, 12])
+
+for label, (x, y) in datasets.items():
+    plt.plot(x, y, 'o', label=label)
+
+    # linear regression
+    p1, p0 = np.polyfit(x, y, deg=1)  # slope, intercept
+    plt.plot(np.unique(x), np.poly1d([p1, p0])(np.unique(x)), color='r', lw=2)
+
+# Add a legend
+plt.legend()
+
+# Add labels to x and y axes
+plt.xlabel('X Values')
+plt.ylabel('Y Values')
+# Add a title
+plt.title('All values from Anscombe\'s Quartet')
+# Show the plot
 plt.show()
