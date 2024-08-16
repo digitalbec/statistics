@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Aug 16 10:13:21 2024
-
+https://matplotlib.org/stable/gallery/specialty_plots/anscombe.html
 @author: bec
 """
 
